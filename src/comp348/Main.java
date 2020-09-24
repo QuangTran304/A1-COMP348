@@ -8,13 +8,20 @@ public class Main {
 
 
 
-        // Write anything here => Try to 'pull', 'commit' and 'push' to remote repository!!
+        // Write anything here => Try to 'pull' (VCS -> Git -> Pull...), 'commit' and 'push' to remote repository!!
         System.out.println("testing");
 
 
 
 
-        // Write anything here => Try to 'pull', 'commit' and 'push' to remote repository!!
+        // Write anything here => Try to 'pull' (VCS -> Git -> Pull...), 'commit' and 'push' to remote repository!!
+
+
+
+
+
+        // Write anything here => Try to 'pull' (VCS -> Git -> Pull...), 'commit' and 'push' to remote repository!!
+
 
     }
 }
