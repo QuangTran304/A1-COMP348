@@ -18,6 +18,7 @@ public class Main {
 
         // Write anything here => Try to 'pull' (VCS -> Git -> Pull...), 'commit' and 'push' to remote repository!!
 
+        System.out.println("testing eric...");
 
 
         // Write anything here => Try to 'pull' (VCS -> Git -> Pull...), 'commit' and 'push' to remote repository!!
