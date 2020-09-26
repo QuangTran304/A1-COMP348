@@ -1,17 +1,25 @@
 package comp348;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.text.NumberFormat;
 
 public class Employee implements Person{
     String firstName, lastName, id;
-    double salary; //I couldn't declare a variable in BigDecimal without assigning a value!!
+    BigDecimal salary;
 
-    Employee(String id, String fname, String lname, double salary){
-        this.id = id;
-        this.firstName = fname;
-        this.lastName = lname;
-        this.salary = salary;
+    Employee(String id, String fname, String lname, BigDecimal salary){
+
+        // ID length needs to be 7 digits
+        if (id.length() == 7 ) {
+            this.id = id;
+            this.firstName = fname;
+            this.lastName = lname;
+            this.salary = salary;
+        } else {
+            System.out.println("Error: Employee's ID needs to be a 7-digit string");
+            System.exit(1);
+        }
     }
 
     @Override
@@ -24,10 +32,7 @@ public class Employee implements Person{
         return this.firstName + " " + this.lastName;
     }
 
-    public BigDecimal getSalary(){
-        BigDecimal returnSalray = BigDecimal.valueOf(salary);
-        return returnSalray;
-    }
+    public BigDecimal getSalary(){ return salary; }
 
     public String toString(){
         NumberFormat salaryInDollar = NumberFormat.getCurrencyInstance();
@@ -37,14 +42,14 @@ public class Employee implements Person{
                 + salaryInDollar.format(this.salary);
     }
 
-    static Employee parse(String input){
-        String[] inputs = new String[4];
-        inputs = input.split(",");
-        Employee newEmployee = new Employee(inputs[0],
-                                            inputs[1],
-                                            inputs[2],
-                                            Double.parseDouble(inputs[3]));
-        return newEmployee;
-    }
+//    static Employee parse(String input){
+//        String[] inputs = new String[4];
+//        inputs = input.split(",");
+//        Employee newEmployee = new Employee(inputs[0],
+//                                            inputs[1],
+//                                            inputs[2],
+//                                            Double.parseDouble(inputs[3]));
+//        return newEmployee;
+//    }
 
 }
