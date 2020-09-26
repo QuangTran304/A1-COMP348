@@ -42,14 +42,9 @@ public class Employee implements Person{
                 + salaryInDollar.format(this.salary);
     }
 
-//    static Employee parse(String input){
-//        String[] inputs = new String[4];
-//        inputs = input.split(",");
-//        Employee newEmployee = new Employee(inputs[0],
-//                                            inputs[1],
-//                                            inputs[2],
-//                                            Double.parseDouble(inputs[3]));
-//        return newEmployee;
-//    }
+    public static Employee parse(String input){
+        String[] inputs = input.split(",");
+        return ( new Employee(inputs[0], inputs[1], inputs[2], new BigDecimal(inputs[3])) );
+    }
 
 }
