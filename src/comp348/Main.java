@@ -4,8 +4,11 @@ package comp348;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
-import java.nio.file.FileSystemNotFoundException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -41,7 +44,7 @@ public class Main {
 
 
 
-        Scanner fileReader = null; // Need to handle exception inside 'try' block
+        Scanner fileReader = null;                                     // Do this because we need to handle exception inside 'try' block
 
         try {
             fileReader = new Scanner(new FileInputStream("src/comp348/inputStrings.txt"));
@@ -50,12 +53,30 @@ public class Main {
             System.exit(1);
         }
 
-        // Just for testing, using 'while' & 'for' is not allowed in our assignment
-        while (fileReader.hasNext()) {
-            String s = fileReader.nextLine();
-            System.out.println(s);
-        }
 
-        fileReader.close();
+        List<Employee> employeeList = new ArrayList<>();       // Dynamic array is more efficient than raw array
+
+        while (fileReader.hasNext()) {
+            Employee e = Employee.parse(fileReader.nextLine());        // Parse employee information from each line in the file
+            employeeList.add(e);
+        }
+        fileReader.close();                                            // Done reading file. Close the file stream
+
+
+        // Sort and Display employees by last-name & first-name
+        List<Employee> employeeByName = employeeList.stream()
+                .sorted(Comparator.comparing(Employee::getName))       // Use method-reference == Lambda
+                .collect(Collectors.toList());
+        System.out.println("\n------ Sorted Employees by first & last name ------");
+        employeeByName.forEach(System.out::println);                   // Use method-reference == Lambda
+
+
+        // Sort & Display employees by ID
+        List<Employee> employeeByID = employeeList.stream()
+                .sorted(Comparator.comparing(Employee::getID))
+                .collect(Collectors.toList());
+
+        System.out.println("\n------ Sorted Employees by ID ------");
+        employeeByID.forEach(System.out::println);
     }
 }
