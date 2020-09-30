@@ -1,14 +1,17 @@
 package comp348;
 
 
+import com.sun.jdi.DoubleValue;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.averagingDouble;
 
 public class Main {
 
@@ -78,5 +81,52 @@ public class Main {
 
         System.out.println("\n------ Sorted Employees by ID ------");
         employeeByID.forEach(System.out::println);
+
+        //making a sublist of salaries from the list of employees
+        List<BigDecimal> ids = employeeList.stream()
+                .map(Employee::getSalary).collect(Collectors.toList());
+
+        //transforming that sublist into a douuble list for easier manipulation
+        List<Double> salarydoubles =  ids.stream().map(BigDecimal::doubleValue).collect(Collectors.toList());
+
+        //grouping in less than 25000, finding average and count
+        List<Double> lesstwentyfive = salarydoubles.stream().filter( e ->e<25000).collect(Collectors.toList());
+        DoubleSummaryStatistics a = lesstwentyfive.stream()
+                .collect(Collectors.summarizingDouble(Double::doubleValue));
+        System.out.println("The average salary of people making less than 25000 is " + a.getAverage() + " and there are " + a.getCount() +
+                " employees in that range.");
+
+        //grouping between 25000 and 40000
+        List<Double> moretwentyfive = salarydoubles.stream().filter( e ->e>=25000&&e<=40000).collect(Collectors.toList());
+        DoubleSummaryStatistics b = moretwentyfive.stream()
+                .collect(Collectors.summarizingDouble(Double::doubleValue));
+        System.out.println("The average salary of people making more than 25000 but less than 40000 is " + b.getAverage() + " and there are " + b.getCount() +
+                " employees in that range.");
+
+        //grouping betweeen 40000 and 70000
+        List<Double> moreforty = salarydoubles.stream().filter( e ->e>=40000&&e<=70000).collect(Collectors.toList());
+        DoubleSummaryStatistics c = moreforty.stream()
+                .collect(Collectors.summarizingDouble(Double::doubleValue));
+        System.out.println("The average salary of people making more than 40000 but less than 70000 is " + c.getAverage() + " and there are " + c.getCount() +
+                " employees in that range.");
+
+        //grouping between more than 70000
+        List<Double> moreseventy = salarydoubles.stream().filter( e ->e>70000).collect(Collectors.toList());
+        DoubleSummaryStatistics d = moreseventy.stream()
+                .collect(Collectors.summarizingDouble(Double::doubleValue));
+        System.out.println("The average salary of people making more than 70000 is " + d.getAverage() + " and there are " + d.getCount() +
+                " employees in that range.");
+
+        //finding the total average and total count
+        double totalaverage = ids.stream().mapToDouble(BigDecimal::doubleValue).sum()/ids.size();
+
+        System.out.println("The total average salary is " + Math.floor(totalaverage*100)/100 + " and the total number of employees is " + ids.size());
+
+
+
+
+
+
     }
-}
+    }
+
