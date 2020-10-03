@@ -6,7 +6,7 @@ This is the repository for Assignment #1 - **COMP 348 class** - Principles of Pr
 
 **Programming languages:** Java & Prolog
 
----
+
 
 ## Team members:
 - Quang - ID# 27740654
@@ -14,7 +14,7 @@ This is the repository for Assignment #1 - **COMP 348 class** - Principles of Pr
 - Eric - ID# 40113678
 - Parsa - ID# 40179383
 
----
+
 
 ## Requirements for Java part:
 - Strictly use the classes defined in `Q1.` May not defined additional classes.
