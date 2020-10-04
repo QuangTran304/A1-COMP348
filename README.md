@@ -6,15 +6,15 @@ This is the repository for Assignment #1 - **COMP 348 class** - Principles of Pr
 
 **Programming languages:** Java & Prolog
 
----
+
 
 ## Team members:
 - Quang - ID# 27740654
-- Ash - ID# xxxxxxxx
-- Eric - ID# xxxxxxxx
-- Parsa - ID# xxxxxxxx
+- Ash - ID# 40096265
+- Eric - ID# 40113678
+- Parsa - ID# 40179383
 
----
+
 
 ## Requirements for Java part:
 - Strictly use the classes defined in `Q1.` May not defined additional classes.
@@ -24,8 +24,4 @@ This is the repository for Assignment #1 - **COMP 348 class** - Principles of Pr
 - Use **Java Stream API** to display the summary information. No explicit loops may be used.
 - Use at least one **method-reference** in your code.
 
-## Requirements for Prolog part:
-- Update later!
-- Update later!
-- Update later!
 
