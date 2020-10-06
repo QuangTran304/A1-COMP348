@@ -1,0 +1,18 @@
+students(Student),findall(S,stcourses(Student,S),ListofCourses).   
+
+findall(X,students(X),List),length(List, N).   
+
+findall(X,stcourses(_, X), List),list_to_set(List,Set).  
+
+findall(X,stcourses(_, X), Lst),list_to_set(Lst,Set),sort(Set, Sort_set).  
+
+findall(X,stcourses(_, X), List),list_to_set(List,Set),sort(Set, Sort_set),
+[A,B|C] = Sort_set.
+
+
+
+
+
+
+
+
