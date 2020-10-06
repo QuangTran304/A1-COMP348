@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 
@@ -14,6 +15,7 @@ public class Main {
     public static void main(String[] args) {
 
 
+//        // Test code: Please un-comment if you want to test Employee class and the parse() method.
 //        System.out.println("\n------ Employee class test ------");
 //        Employee worker1 = new Employee("1234567", "John", "Doe", new BigDecimal("3000.02"));
 //        System.out.println("Worker1: " + worker1.toString());
@@ -67,6 +69,13 @@ public class Main {
 
 
 
+        // Group employees by salary range using Collectors.groupingBy()
+        Map<SalaryRange, List<Employee>> groupBySalaryRange = employeeList.stream()
+                                                                         .collect(Collectors.groupingBy(Employee::getRange));
+        groupBySalaryRange.forEach((salaryRange, employeeList2) -> {
+            System.out.println("\n" + salaryRange);
+            employeeList2.forEach(System.out::println);
+        });
 
 
 

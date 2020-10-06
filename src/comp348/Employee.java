@@ -7,6 +7,7 @@ import java.text.NumberFormat;
 public class Employee implements Person{
     String firstName, lastName, id;
     BigDecimal salary;
+    SalaryRange range;
 
     Employee(String id, String fname, String lname, BigDecimal salary){
 
@@ -32,7 +33,24 @@ public class Employee implements Person{
         return this.firstName + " " + this.lastName;
     }
 
-    public BigDecimal getSalary(){ return salary; }
+    public BigDecimal getSalary(){
+        return salary;
+    }
+
+    // Find range of salary: < 25,000 | 25,000-40,000 | 40,000-70,000 | > 70,000
+    public SalaryRange getRange() {
+        if (salary.compareTo(new BigDecimal("25000")) < 0) {
+            return SalaryRange.LOWEST;
+
+        } else if (salary.compareTo(new BigDecimal("25000"))  >= 0  &&  salary.compareTo(new BigDecimal("40000")) <= 0) {
+            return SalaryRange.LOW;
+
+        } else if (salary.compareTo(new BigDecimal("40000"))  > 0  &&  salary.compareTo(new BigDecimal("70000")) <= 0) {
+            return SalaryRange.MEDIUM;
+
+        }
+        return SalaryRange.HIGH;
+    }
 
     public String toString(){
         NumberFormat salaryInDollar = NumberFormat.getCurrencyInstance();
